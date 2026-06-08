@@ -1,1 +1,12 @@
 include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    # Sugiere const en constructores cuando se puede
+    prefer_const_constructors: true
+    # Sugiere const en constructores de clases @immutable
+    prefer_const_constructors_in_immutables: true
+    # Sugiere const en declaraciones de variables (final -> const)
+    prefer_const_declarations: true
+    # Sugiere const en listas/maps/sets inmutables
+    prefer_const_literals_to_create_immutables: true
