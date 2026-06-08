@@ -1,5 +1,5 @@
 # CompassGO
-Una aplicaciond de brujula digital, datos numericos de ubicacion
+Una aplicacion de brujula digital, datos numericos de ubicacion
 y grafico del mapa donde se encuntre el usuario.
 
 # Descargas
