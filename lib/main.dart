@@ -5,7 +5,7 @@ import 'package:flutter/services.dart';
 import 'package:compass_app/config/config.dart';
 
 void main() async{
-
+  // !  SECCION 02 - PERMISOS(PERMISSION HANDLER)
   WidgetsFlutterBinding.ensureInitialized();
 
   await SystemChrome.setPreferredOrientations([
