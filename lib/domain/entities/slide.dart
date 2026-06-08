@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 class Slide {
   final String title;
+  final String? subTitle;
   final String image;
   final IconData? icon;
   final Widget widget;
@@ -12,6 +13,7 @@ class Slide {
     required this.title, 
     required this.image, 
     this.icon, 
-    required this.widget
+    required this.widget, 
+    this.subTitle
   });
 }

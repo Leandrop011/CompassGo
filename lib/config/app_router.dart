@@ -10,6 +10,14 @@ final appRouter = GoRouter(
       path: '/',
       builder: (context, state) => const HomeScreen(),
     ),
+    GoRoute(
+      path: '/info-app-screen',
+      builder: (context, state) => const InfoAppScreen(),
+    ),
+    GoRoute(
+      path: '/config-app-screen',
+      builder: (context, state) => const ConfigScreen(),
+    ),
 
   ]
 );
