@@ -17,4 +17,5 @@ dart run flutter_launcher_icons:generate
 Permisos (Permissions Handler)
 ```
 flutter pub add permission_handler
+(Cambios necesarios en el Manifest)
 ```

@@ -1,42 +1,62 @@
-import 'package:compass_app/domain/domain.dart';
+import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
+import 'package:compass_app/features/compass/presentation/providers/providers.dart';
+
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'package:compass_app/features/compass/domain/domain.dart';
+import '../widgets/widgets.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends ConsumerWidget {
   const HomeScreen({super.key});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
 
-    FlutterNativeSplash.remove();
+    FlutterNativeSplash.remove(); 
 
-    return Scaffold(
-      appBar: AppBar(
-        title: const Row(
-          children: [
-            Text('Home Screen'),
-            SizedBox(width: 10,),
-            Icon(Icons.explore_rounded)
+    final permissions = ref.watch(permissionProvider);
+
+    // * verificacion previa a entrar a la app
+    if (!permissions.locationGranted || !permissions.sensorsGranted) {
+      return AskPermissionWidget(
+        title: 'Permisos Necesarios',
+        content: (!permissions.locationGranted && !permissions.sensorsGranted) ? 'Para utilizar esta aplicación es necesario aceptar los permisos de: ubicacion y sensores'
+                  :(!permissions.locationGranted) ? 'Para utilizar esta aplicación es necesario aceptar los permisos de: ubicacion'
+                  :(!permissions.sensorsGranted) ? 'Para utilizar esta aplicación es necesario aceptar los permisos de: sensores' : '', 
+        onPressedPermission: () => ref.read(permissionProvider.notifier).requestBothPermissions(),
+      );
+    }
+
+    return ZoomInDown(
+      child: Scaffold(
+        appBar: AppBar(
+          title: const Row(
+            children: [
+              Text('Home Screen'),
+              SizedBox(width: 10,),
+              Icon(Icons.explore_rounded)
+            ],
+          ),
+      
+          actions: [
+            IconButton(
+              onPressed: () => context.push('config-app-screen'), 
+              icon: const Icon(Icons.settings_rounded)
+            ),
+            const SizedBox(width: 10,),
+            IconButton(
+              onPressed: () => context.push('info-app-screen'), 
+              icon: const Icon(Icons.info_rounded)
+            ),
           ],
+      
         ),
-
-        actions: [
-          IconButton(
-            onPressed: () => context.push('config-app-screen'), 
-            icon: const Icon(Icons.settings_rounded)
-          ),
-          const SizedBox(width: 10,),
-          IconButton(
-            onPressed: () => context.push('info-app-screen'), 
-            icon: const Icon(Icons.info_rounded)
-          ),
-        ],
-
+      
+        body: const _BodyView(),
       ),
-      // TODO: IMPLEMENTAR VERIFICACION SI LOS PERMISOS NO ESTAN OTORGADOS
-      body: const _BodyView(),
     );
   }
 }
@@ -108,7 +128,7 @@ class _BodyViewState extends State<_BodyView> {
   }
 }
 
-class _SlideView extends StatelessWidget {
+class _SlideView extends ConsumerWidget {
 
   final String title;
   final Widget widget;
@@ -126,8 +146,11 @@ class _SlideView extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+
     final textTheme = Theme.of(context).textTheme;
+    final valuePermissionLocation = ref.watch(permissionProvider).locationGranted;
+    final valuePermissionSensors = ref.watch(permissionProvider).sensorsGranted;
 
     return Center(
       child: Column(
@@ -149,6 +172,22 @@ class _SlideView extends StatelessWidget {
               color: Colors.grey,
               borderRadius: BorderRadius.circular(20)
             ),
+
+            child: (valuePermissionSensors && valuePermissionLocation) ? 
+              const Center(child: Text('Contenido'))
+              :
+              Column( 
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  const Text('Permisos Necesarios'),
+                  const SizedBox(height: 10,),
+                  FilledButton(
+                    onPressed: () => context.push('config-app-screen'), 
+                    child: const Text('Permitir')
+                  )
+                ],
+              ),
           ),  
         ],
       ),

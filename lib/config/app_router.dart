@@ -1,5 +1,5 @@
 
-import 'package:compass_app/presentation/presentation.dart';
+import 'package:compass_app/features/compass/presentation/presentation.dart';
 import 'package:go_router/go_router.dart';
 
 final appRouter = GoRouter(
