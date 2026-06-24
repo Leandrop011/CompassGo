@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:compass_app/config/config.dart';
 
 void main() async{
-  // !  SECCION 03 - COMPASS PAGEVIEW
+  // !  SECCION 04 - MAP
   WidgetsFlutterBinding.ensureInitialized();
 
   // ? oculart la barra/botones de navegacion
