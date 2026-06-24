@@ -1,4 +1,4 @@
-import 'package:compass_app/features/compass/presentation/providers/providers.dart';
+import 'package:compass_app/features/compassGo/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter/services.dart';
@@ -8,6 +8,9 @@ import 'package:compass_app/config/config.dart';
 void main() async{
   // !  SECCION 03 - COMPASS PAGEVIEW
   WidgetsFlutterBinding.ensureInitialized();
+
+  // ? oculart la barra/botones de navegacion
+  // SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 
   await SystemChrome.setPreferredOrientations([
         DeviceOrientation.portraitUp,
@@ -67,8 +70,7 @@ class _MainAppState extends ConsumerState<MainApp> with WidgetsBindingObserver{
 
   @override
   Widget build(BuildContext context) {
-
-
+    
     return MaterialApp.router(
       theme: AppTheme(isDarck: true).getTheme(),
       debugShowCheckedModeBanner: false,

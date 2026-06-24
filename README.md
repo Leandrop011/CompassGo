@@ -19,3 +19,15 @@ Permisos (Permissions Handler)
 flutter pub add permission_handler
 (Cambios necesarios en el Manifest)
 ```
+Paquete Compass(Necesario para emititr valores de localizacion)
+```
+flutter pub add flutter_compass
+```
+Animaciones
+```
+flutter pub add lottie
+```
+Gurdar localmente datos
+```
+flutter pub add shared_preferences
+```
