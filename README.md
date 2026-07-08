@@ -31,3 +31,18 @@ Gurdar localmente datos
 ```
 flutter pub add shared_preferences
 ```
+Paquete para usar el map de google(requiere un proyecto en google cloud para su funcionamiento)
+```
+flutter pub add google_maps_flutter
+flutter pub add geolocator
+```
+Environments
+Colocar el API KEY de google cloud en el .env, renombrar el .env-exameple to .env
+e instalar la siguiente extension
+```
+flutter pub add flutter_dotenv
+```
+Generar IDs aleatorios
+```
+dart pub add uuid
+```

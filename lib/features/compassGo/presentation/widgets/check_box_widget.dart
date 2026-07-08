@@ -22,10 +22,11 @@ class CheckBoxTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CheckboxListTile(
-
+      checkboxScaleFactor: 1.2,
+      
       title: Text(title),
       subtitle: Text(subTitle),
-      
+      secondary: Icon(icon),
 
       value: value, 
       onChanged: (_) => onChanged(),

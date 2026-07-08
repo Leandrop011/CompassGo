@@ -1,10 +1,10 @@
-import 'package:compass_app/features/compassGo/presentation/providers/providers.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'package:compass_app/features/compassGo/presentation/providers/providers.dart';
 import 'package:compass_app/features/compassGo/presentation/widgets/widgets.dart';
 import 'package:compass_app/features/compassGo/domain/domain.dart';
 
@@ -47,27 +47,28 @@ class HomeScreen extends ConsumerWidget {
 }
 
 // * BODY DEL HOME
-class _BodyView extends StatefulWidget {
+class _BodyView extends ConsumerStatefulWidget {
+
   const _BodyView();
 
   @override
-  State<_BodyView> createState() => _BodyViewState();
+  ConsumerState<_BodyView> createState() => _BodyViewState();
 }
 
-class _BodyViewState extends State<_BodyView> {
+class _BodyViewState extends ConsumerState<_BodyView> {
 
   PageController pageController = PageController();
 
-  // * LISTA DE SLIDES QUE SE MOSTRARAN
-  final List<Slide> slides = [
-    Slide(title: 'Compass', widget: const CompassWidget()),
-    Slide(title: 'Mapa', widget: const Center()),
-    Slide(title: 'Longitud - Latitud', widget: const Center()),
-    Slide(title: 'Magnetometro', widget: const Center()),
-  ];
-
   @override
   Widget build(BuildContext context) {
+
+    // * LISTA DE SLIDES QUE SE MOSTRARAN
+    final List<Slide> slides = [
+      Slide(title: 'Compass', widget: const CompassWidget(), routeConfiguration: 'config-theme-compass'),
+      Slide(title: 'Mapa', widget: const MapWidget(), routeConfiguration: 'config-view-theme-map'),
+      Slide(title: 'Longitud - Latitud', widget: const Center()),
+      Slide(title: 'Magnetometro', widget: const Center()),
+    ];
 
     final size = MediaQuery.of(context).size;
     final colorTheme = Theme.of(context).colorScheme;
@@ -87,6 +88,7 @@ class _BodyViewState extends State<_BodyView> {
                 title: slide.title, 
                 widget: slide.widget,
                 size: size,
+                routeConfiguration: slide.routeConfiguration ?? '/',
               )
             ).toList(),
           ),

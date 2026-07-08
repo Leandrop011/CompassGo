@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +18,7 @@ class ConfigScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Configuraciones'),
+        centerTitle: true,
         actions: [
           // * Alert dialog de la informacion de la screen
           IconButton(
@@ -26,7 +28,10 @@ class ConfigScreen extends StatelessWidget {
               'Esta pantalla permite gestionar los permisos necesarios para el funcionamiento de la brújula y personalizar la apariencia de la aplicación.', 
               [
                 FilledButton(
-                  onPressed: () => context.pop(), 
+                  onPressed: () => context.pop(),
+                  style: FilledButton.styleFrom(
+                    shape: RoundedRectangleBorder(borderRadius: BorderRadiusGeometry.circular(10)),
+                  ), 
                   child: const Text('Ok')
                 )
               ],
@@ -34,6 +39,8 @@ class ConfigScreen extends StatelessWidget {
             icon: const Icon(Icons.info_rounded)
           ),
         ],
+        leading: IconButton(onPressed: () => context.pop(), icon: const Icon(Icons.arrow_back_ios_new_rounded)),
+
       ),
 
       body: const _BodyView(),
@@ -61,34 +68,42 @@ class _BodyView extends ConsumerWidget {
           // * TITULO DE LAS CONFIGURACIONES DE LA APP
           Padding(
             padding: EdgeInsetsGeometry.only(left: size.width * 0.01),
-            child: Text(
-              'Aplicacion',
-              style: textTheme.titleLarge,
+            child: Row(
+              children: [
+                Text(
+                  'Aplicacion',
+                  style: textTheme.titleLarge,
+                ),
+                SizedBox(width: size.width * 0.02,),
+                const Icon(CupertinoIcons.app_badge)
+              ],
             ),
           ),
             
           // * CONFIGURACIONES DE LA APLICACION THEME/SECURITY
           BoxStyle(
-            color: const Color.fromARGB(255, 64, 80, 96),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white, width: 0.5),
+            color: const Color.fromARGB(255, 50, 63, 76),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
             child: SwitchListTile(
               title: const Text('Fondo'),
               subtitle: const Text('Obscuro/Blanco'),
+              secondary: const Icon(CupertinoIcons.moon_stars_fill),
               value: false, 
               onChanged: (value) => {},
             ),
           ),
       
           BoxStyle(
-            color: const Color.fromARGB(255, 64, 80, 96),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white, width: 0.5),
+            color: const Color.fromARGB(255, 50, 63, 76),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
             child: SwitchListTile(
               title: const Text('Seguridad'),
               subtitle: const Text('PIN/Biometricos'),
+              secondary: const Icon(CupertinoIcons.lock_fill),
               value: false,
               onChanged: (value) => {},
             ),
@@ -97,22 +112,28 @@ class _BodyView extends ConsumerWidget {
           // * TITULO DE LA SECCION PERMISOS DE LA APP
           Padding(
             padding: EdgeInsetsGeometry.only(top: size.height * 0.01, left: size.width * 0.01),
-            child: Text(
-              'Permisos',
-              style: textTheme.titleLarge,
+            child: Row(
+              children: [
+                Text(
+                  'Permisos',
+                  style: textTheme.titleLarge,
+                ),
+                SizedBox(width: size.width * 0.02,),
+                const Icon(CupertinoIcons.gear_solid)
+              ],
             ),
           ),
 
           // * CHECKLIST DE LOS PERMISOS OTORGADOS O NO DE LA APP
           BoxStyle(
-            color: const Color.fromARGB(255, 64, 80, 96),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white, width: 0.5),
+            color: const Color.fromARGB(255, 50, 63, 76),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
             child: CheckBoxTile(
               title: 'Ubicacion', 
               subTitle: 'Otorgar permisos de ubicacion.', 
-              icon: Icons.explore, 
+              icon: CupertinoIcons.location_north_fill, 
               value: permissions.locationGranted,
               onChanged: () => ref.read(permissionProvider.notifier).requestPermissionLocation(),
             ),
@@ -121,14 +142,14 @@ class _BodyView extends ConsumerWidget {
           // const SizedBox(height: 10,),
       
           BoxStyle(
-            color: const Color.fromARGB(255, 64, 80, 96),
-            borderRadius: BorderRadius.circular(10),
-            border: Border.all(color: Colors.white, width: 0.5),
+            color: const Color.fromARGB(255, 50, 63, 76),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
             child: CheckBoxTile(
               title: 'Sensores',          
               subTitle: 'Otorgar permisos de sensores.', 
-              icon: Icons.sensors_rounded, 
+              icon: CupertinoIcons.antenna_radiowaves_left_right, 
               value: permissions.sensorsGranted,
               onChanged: () => ref.read(permissionProvider.notifier).requestPermissionSensors(), 
             ),

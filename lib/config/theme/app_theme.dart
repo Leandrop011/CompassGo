@@ -12,7 +12,7 @@ class AppTheme {
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,
 
-    colorSchemeSeed: Colors.blue,
+    colorSchemeSeed: const Color.fromARGB(255, 85, 188, 153),
 
     textTheme: TextTheme(
       // * TITULOS / DISPLAY -> Familia "Sora" (geometrica, tecnologica, ideal para una brujula)

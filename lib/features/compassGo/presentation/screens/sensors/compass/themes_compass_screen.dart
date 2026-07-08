@@ -17,8 +17,8 @@ class ThemesCompass extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Temas'),
-      
+        title: const Text('Temas Compass'),
+        centerTitle: true,
         actions: [
           IconButton(
             onPressed: () => ShowDialogWidget.showDialogAlert(
@@ -38,6 +38,7 @@ class ThemesCompass extends StatelessWidget {
             icon: const Icon(Icons.info),
           ),
         ],
+        leading: IconButton(onPressed: () => context.pop(), icon: const Icon(Icons.arrow_back_ios_new_rounded)),
 
       ),
 
@@ -67,6 +68,7 @@ class _BodyView extends ConsumerWidget {
           ref.read(themesCompassProvider.notifier).changeTheme(value!.index, valueTheme: value);
           ref.read(themesCompassProvider.notifier).setValueThemeStorage(value.index);
         },
+        // * MASONRY STYLE OF THE LIST
         child: MasonryGridView.count(
           physics: const BouncingScrollPhysics(),
           crossAxisCount: 2,
@@ -76,14 +78,14 @@ class _BodyView extends ConsumerWidget {
           itemBuilder: (context, index){
         
             final theme = themesCompass[index];
-        
+            // ? A THEME
             return ZoomIn(
               child: GestureDetector(
                 onTap: () async{
                   final value = await ref.read(themesCompassProvider.notifier).getValueThemeStorage();
                   ref.read(themesCompassProvider.notifier).changeTheme(value, valueTheme: theme.theme);
                   ref.read(themesCompassProvider.notifier).setValueThemeStorage(theme.theme.index);
-
+        
                   HapticFeedback.mediumImpact();
                 },
                 child: CardRadioWidget(

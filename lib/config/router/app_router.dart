@@ -25,6 +25,11 @@ final appRouter = GoRouter(
       path: '/config-theme-compass',
       builder: (context, state) => const ThemesCompass(),
     ),
+    // ? ruta de configuracion y visualizacion del map
+    GoRoute(
+      path: '/config-view-theme-map',
+      builder: (context, state) => const MapFullScreen(),
+    ),
 
   ]
 );

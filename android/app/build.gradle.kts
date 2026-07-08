@@ -1,9 +1,18 @@
+import java.util.Properties
 plugins {
     id("com.android.application")
     id("kotlin-android")
     // The Flutter Gradle Plugin must be applied after the Android and Kotlin Gradle plugins.
     id("dev.flutter.flutter-gradle-plugin")
 }
+
+
+val dotenv = Properties()
+val envFile = rootProject.file("../.env")
+if (envFile.exists()) {
+    envFile.inputStream().use { dotenv.load(it) }
+}
+
 
 android {
     namespace = "com.example.compass_app"
@@ -20,6 +29,7 @@ android {
     }
 
     defaultConfig {
+        manifestPlaceholders["mapsApiKey"] = dotenv.getProperty("MAPS_API_KEY") ?: ""
         // TODO: Specify your own unique Application ID (https://developer.android.com/studio/build/application-id.html).
         applicationId = "com.example.compass_app"
         // You can update the following values to match your application needs.

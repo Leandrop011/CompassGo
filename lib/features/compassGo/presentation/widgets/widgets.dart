@@ -6,3 +6,6 @@ export 'compass_widget.dart';
 export 'check_box_widget.dart';
 export 'slide_home_widget.dart';
 export 'card_radio_widget.dart';
+export 'map_widget.dart';
+export 'drop_menu_widget.dart';
+export 'filled_button_widget.dart';

@@ -10,10 +10,21 @@
     <uses-permission android:name="android.permission.BODY_SENSORS" />
     <uses-permission android:name="android.permission.BODY_SENSORS_BACKGROUND" />
 
+    <!--
+    ! Internet permissions do not affect the `permission_handler` plugin, but are required if your app needs access to
+    ! the internet.
+    -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
+
+
     <application
         android:label="CompassGo"
         android:name="${applicationName}"
         android:icon="@mipmap/launcher_icon">
+
+        <!-- ! PARA EL USO DE LOS SERVICIOS DEL MAPA DE GOOGLE-->
+        <meta-data android:name="com.google.android.geo.API_KEY" android:value="${mapsApiKey}"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"
