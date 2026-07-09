@@ -6,7 +6,7 @@ import 'package:flutter/services.dart';
 import 'package:compass_app/config/config.dart';
 
 void main() async{
-  // !  SECCION 05 - LAT AND LONG
+  // !  SECCION 06 - MAGNETOMETER
   WidgetsFlutterBinding.ensureInitialized();
 
   // ? oculart la barra/botones de navegacion
