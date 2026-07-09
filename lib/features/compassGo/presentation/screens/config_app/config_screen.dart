@@ -86,6 +86,7 @@ class _BodyView extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
+            width: size.width,
             child: SwitchListTile(
               title: const Text('Fondo'),
               subtitle: const Text('Obscuro/Blanco'),
@@ -100,6 +101,7 @@ class _BodyView extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
+            width: size.width,
             child: SwitchListTile(
               title: const Text('Seguridad'),
               subtitle: const Text('PIN/Biometricos'),
@@ -130,6 +132,7 @@ class _BodyView extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
+            width: size.width,
             child: CheckBoxTile(
               title: 'Ubicacion', 
               subTitle: 'Otorgar permisos de ubicacion.', 
@@ -146,6 +149,7 @@ class _BodyView extends ConsumerWidget {
             borderRadius: BorderRadius.circular(20),
             border: Border.all(color: Colors.grey.shade700, width: 1),
             height: size.height * 0.1,
+            width: size.width,
             child: CheckBoxTile(
               title: 'Sensores',          
               subTitle: 'Otorgar permisos de sensores.', 

@@ -8,6 +8,7 @@ class BoxStyle extends StatelessWidget {
   final Border border;
   final Widget child;
   final double height;
+  final double width;
 
   const BoxStyle({
     super.key, 
@@ -15,7 +16,8 @@ class BoxStyle extends StatelessWidget {
     required this.borderRadius, 
     required this.border, 
     required this.child, 
-    required this.height
+    required this.height, 
+    required this.width
   });
 
   @override
@@ -27,6 +29,7 @@ class BoxStyle extends StatelessWidget {
       padding: EdgeInsetsGeometry.only(top: size.height * 0.01, right: size.width * 0.01),
       child: Container(
         height: height,
+        width: width,
         decoration: BoxDecoration(
           color: color,
           borderRadius: borderRadius,

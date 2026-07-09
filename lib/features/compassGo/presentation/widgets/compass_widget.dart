@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:animate_do/animate_do.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/sensors/compass/sensors.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/themes_compass/themes_compass_provider.dart';

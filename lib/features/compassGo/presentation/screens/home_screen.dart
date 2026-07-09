@@ -66,8 +66,8 @@ class _BodyViewState extends ConsumerState<_BodyView> {
     final List<Slide> slides = [
       Slide(title: 'Compass', widget: const CompassWidget(), routeConfiguration: 'config-theme-compass'),
       Slide(title: 'Mapa', widget: const MapWidget(), routeConfiguration: 'config-view-theme-map'),
-      Slide(title: 'Longitud - Latitud', widget: const Center()),
-      Slide(title: 'Magnetometro', widget: const Center()),
+      Slide(title: 'Longitud - Latitud', widget: const LonLatWidget()),
+      Slide(title: 'Magnetometro', widget: const Center()), 
     ];
 
     final size = MediaQuery.of(context).size;
