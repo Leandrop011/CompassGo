@@ -10,3 +10,4 @@ export 'map_widget.dart';
 export 'drop_menu_widget.dart';
 export 'filled_button_widget.dart';
 export 'lon_lat_widget.dart';
+export 'magnetometer_widget.dart';

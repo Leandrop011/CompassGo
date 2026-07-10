@@ -1,5 +1,5 @@
 import 'package:animate_do/animate_do.dart';
-import 'package:compass_app/features/compassGo/presentation/providers/sensors/compass/sensors.dart';
+import 'package:compass_app/features/compassGo/presentation/providers/sensors/sensors.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/themes_compass/themes_compass_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';

@@ -46,3 +46,7 @@ Generar IDs aleatorios
 ```
 dart pub add uuid
 ```
+Usar los sensores del dispositivo
+```
+flutter pub add sensors_plus
+```
