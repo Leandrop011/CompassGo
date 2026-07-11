@@ -53,7 +53,7 @@ class SlideView extends ConsumerWidget {
           children: [
             
             // * TITULO DEL SLIDE
-            _TitleView(size: size, title: title, textTheme: textTheme),
+            _TitleView(size: size, title: title, textTheme: textTheme, colorTheme: colorTheme,),
       
             const SizedBox(height: 10,), 
       
@@ -67,19 +67,23 @@ class SlideView extends ConsumerWidget {
 }
 
 // * WIDGET QUE CONSTRUYE EL TITLE DE CADA SLIDE
-class _TitleView extends StatelessWidget {
-  const _TitleView({
-    required this.size,
-    required this.title,
-    required this.textTheme,
-  });
-
+class _TitleView extends ConsumerWidget {
   final Size size;
   final String title;
   final TextTheme textTheme;
+  final ColorScheme colorTheme;
+  
+  const _TitleView({
+    required this.size,
+    required this.title,
+    required this.textTheme, 
+    required this.colorTheme,
+  });
+
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, ref) {
+    final fountValueState = ref.watch(fountValueProvider);
     return Padding(
       padding: const EdgeInsets.only(bottom: 8.0),
       child: Container(
@@ -87,13 +91,13 @@ class _TitleView extends StatelessWidget {
         height: size.height * 0.07, 
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20),
-          color: Colors.black45,  
-          border: Border.all(width: size.width * 0.0035, color: Colors.white12),
+          color: (fountValueState.fountValue) ? Colors.black45 : const Color.fromARGB(221, 22, 22, 22),  
+          border: Border.all(width: size.width * 0.0035, color: Colors.white12 ),
         ),
         child: Center(
           child: Text(
             title, 
-            style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.06),
+            style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.06, color: Colors.white),
           ),
         ),
       ),
@@ -121,11 +125,12 @@ class _SlideView extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, ref) {
+    final fountValueState = ref.watch(fountValueProvider);
     return Container(
       width: size.width * 0.85,
       height: size.height * 0.58,
       decoration: BoxDecoration(
-        color: Colors.black87,
+        color: (fountValueState.fountValue) ? Colors.black87 : Colors.grey.shade900,
         border: Border.all(color: colorTheme.primary.withOpacity(0.7), width: size.width * 0.005),
         borderRadius: BorderRadius.circular(40),
         boxShadow: [

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:go_router/go_router.dart';
@@ -17,6 +18,7 @@ class MapFullScreen extends ConsumerWidget {
     final themesMap = ref.watch(themesMapProvider.notifier).listThemesMap();
     final colorTheme = Theme.of(context).colorScheme;
     final controllerMap = ref.watch(mapControllerProvider);
+    final fountValueState = ref.watch(fountValueProvider);
 
     return Scaffold(
       appBar: AppBar(
@@ -40,7 +42,7 @@ class MapFullScreen extends ConsumerWidget {
                 ),
               ]
             ), 
-            icon: const Icon(Icons.info_rounded)
+            icon: const Icon(CupertinoIcons.info_circle_fill)
           ),
         ],
       
@@ -63,7 +65,7 @@ class MapFullScreen extends ConsumerWidget {
               left: size.width * 0.02,
               child: Container(
                 decoration: BoxDecoration(
-                  color: Colors.black87,
+                  color: (fountValueState.fountValue) ? Colors.black87 : Colors.grey.shade300   ,
                   borderRadius: BorderRadius.circular(20)
                 ),
                 child: DropMenuWidget(

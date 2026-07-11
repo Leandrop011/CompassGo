@@ -1,9 +1,11 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:go_router/go_router.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
+import 'package:compass_app/features/compassGo/presentation/presentation.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/providers.dart';
 import 'package:compass_app/features/compassGo/presentation/widgets/widgets.dart';
 import 'package:compass_app/features/compassGo/domain/domain.dart';
@@ -15,6 +17,10 @@ class HomeScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
 
     FlutterNativeSplash.remove(); 
+    final size = MediaQuery.of(context).size;
+    final colorTheme = Theme.of(context).colorScheme;
+    final fountValueState = ref.watch(fountValueProvider);
+    final tutorialValueState = ref.watch(tutorialValueProvider);
 
     Future.delayed(
       const Duration(seconds: 1), 
@@ -23,26 +29,43 @@ class HomeScreen extends ConsumerWidget {
       }
     );
 
-    return Scaffold(
+    return (tutorialValueState.value) ? 
+    Scaffold(
       appBar: AppBar(
+        leadingWidth: size.width * 0.1, // ? max width leading widget
+        
+        leading: Row(
+          children: [
+            SizedBox(width: size.width * 0.03,),
+            const Spacer(),
+            BoxStyle(
+              color: colorTheme.primary, 
+              borderRadius: BorderRadius.circular(10), 
+              height: size.height * 0.05, 
+              width: size.width * 0.025,
+            ),
+          ],
+        ),
+        
         title: const Text('CompassGO'),
     
         actions: [
           IconButton(
             onPressed: () => context.push('config-app-screen'), 
-            icon: const Icon(Icons.settings_rounded)
+            icon: const Icon(CupertinoIcons.gear_alt_fill)
           ),
-          const SizedBox(width: 10,),
           IconButton(
-            onPressed: () => context.push('info-app-screen'), 
-            icon: const Icon(Icons.info_rounded)
+            onPressed: () => ref.read(fountValueProvider.notifier).changeFount(!fountValueState.fountValue), 
+            icon: Icon( (fountValueState.fountValue) ? CupertinoIcons.sun_max : CupertinoIcons.moon_fill)
           ),
         ],
     
       ),
     
       body: const _BodyView(),
-    );
+    )
+    :
+    const TutorialScreen();
   }
 }
 
@@ -79,10 +102,9 @@ class _BodyViewState extends ConsumerState<_BodyView> {
         // * SLIDES
         Expanded(
           child: PageView(
-            physics: const BouncingScrollPhysics(),
+            physics: const ClampingScrollPhysics(),
             controller: pageController,
             scrollDirection: Axis.horizontal,
-          
             children: slides.map(
               (slide) => SlideView(
                 title: slide.title, 

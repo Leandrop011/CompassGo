@@ -11,3 +11,8 @@ export 'drop_menu_widget.dart';
 export 'filled_button_widget.dart';
 export 'lon_lat_widget.dart';
 export 'magnetometer_widget.dart';
+export 'divider_widget.dart';
+export 'welcome_tutorial.dart';
+export 'about_tutorial_widget.dart';
+export 'finish_tutorial_widget.dart';
+export 'tutorial_content_widget.dart';

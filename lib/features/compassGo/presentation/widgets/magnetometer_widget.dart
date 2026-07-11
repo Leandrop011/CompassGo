@@ -48,40 +48,45 @@ class _MagnetometerView extends StatelessWidget {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Icon(CupertinoIcons.dot_radiowaves_left_right, color: colorTheme.primary, size: size.width * 0.125,),
+
+        Icon(CupertinoIcons.dot_radiowaves_left_right, color: colorTheme.primary, size: size.width * 0.15,),
         
         SizedBox(height: size.height * 0.01,),
         
         BoxStyle(
           color: Colors.black, 
           borderRadius: BorderRadius.circular(10), 
-          border: Border.all(width: 1, color: colorTheme.primary.withOpacity(0.7)), 
+          border: Border.all(width: 2, color: colorTheme.primary.withOpacity(0.7)), 
           height: size.height * 0.1, 
           width: size.width * 0.3, 
-          child: Center(child: Text('Valores', style: textTheme.labelMedium?.copyWith(fontSize: size.width * 0.045),))
+          child: Center(child: Text('Valores', style: textTheme.labelMedium?.copyWith(fontSize: size.width * 0.045, color: Colors.white),))
         ),
+        
         SizedBox(height: size.height * 0.02,),
-        Divider(
-          indent: size.width * 0.1,
-          endIndent: size.width * 0.1,
-          thickness: size.height * 0.005,
-          radius: BorderRadius.circular(20),
+        
+        DividerWidget(
+          indent: size.width * 0.1, 
+          endIndet: size.width * 0.1, 
+          radius: BorderRadius.circular(10), 
+          thickness: size.height * 0.004,
         ),
-        SizedBox(height: size.height * 0.02,),
+
+        SizedBox(height: size.height * 0.01,),
+
         BoxStyle(
           color: colorTheme.primary.withOpacity(0.2), 
           borderRadius: BorderRadius.circular(10), 
-          border: Border.all(width: 1, color: Colors.white30), 
+          border: Border.all(width: 2, color: Colors.white30), 
           height: size.height * 0.15, 
           width: size.width * 0.4, 
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('$x', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045),),
+              Text('$x', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045, color: Colors.white),),
               SizedBox(height: size.height * 0.01,),
-              Text('$y', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045),),
+              Text('$y', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045, color: Colors.white),),
               SizedBox(height: size.height * 0.01,),
-              Text('$z', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045),),
+              Text('$z', style: textTheme.bodyMedium?.copyWith(fontSize: size.width * 0.045, color: Colors.white),),
             ],
           ),
         ),

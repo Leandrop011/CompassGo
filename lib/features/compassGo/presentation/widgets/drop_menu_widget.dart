@@ -23,14 +23,14 @@ class DropMenuWidget extends ConsumerWidget {
   @override
   Widget build(BuildContext context, ref) {
 
+    final fountValueState = ref.watch(fountValueProvider);
+
     // * WIDGET DROPDOWNMENU
     return  DropdownMenu(    
       // * ESTILOS 
       textStyle: TextStyle(
-        color: colorTheme.primary
+        color: (fountValueState.fountValue) ? colorTheme.primary : Colors.black
       ),
-    
-      
     
       inputDecorationTheme: InputDecorationTheme(
         border: InputBorder.none,

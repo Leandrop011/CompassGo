@@ -71,9 +71,12 @@ class _MainAppState extends ConsumerState<MainApp> with WidgetsBindingObserver{
 
   @override
   Widget build(BuildContext context) {
+
+    final fountAppState = ref.watch(fountValueProvider);
+    final themeAppState = ref.watch(themeValueProvider); 
     
     return MaterialApp.router(
-      theme: AppTheme(isDarck: true).getTheme(),
+      theme: AppTheme(isDarck: fountAppState.fountValue, valueColorThemeApp: themeAppState.valueTheme).getTheme(),
       debugShowCheckedModeBanner: false,
       routerConfig: appRouter,
     );

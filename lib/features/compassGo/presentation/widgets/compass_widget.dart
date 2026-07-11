@@ -1,4 +1,5 @@
 import 'package:animate_do/animate_do.dart';
+import 'package:compass_app/features/compassGo/presentation/providers/providers.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/sensors/sensors.dart';
 import 'package:compass_app/features/compassGo/presentation/providers/themes_compass/themes_compass_provider.dart';
 import 'package:flutter/material.dart';
@@ -53,6 +54,7 @@ class _CompassWidgetState extends ConsumerState<CompassWidget> {
     final textTheme = Theme.of(context).textTheme;
     final getTheme = ref.watch(themesCompassProvider.notifier).getTheme();
     final colorTheme = Theme.of(context).colorScheme;
+    final fountValueState = ref.watch(fountValueProvider);
 
     return valuesCompass.when(
       data: (heading) {
@@ -68,13 +70,14 @@ class _CompassWidgetState extends ConsumerState<CompassWidget> {
                 height: size.height * 0.05,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(15),
-                  color: Colors.black,
+                  color:  (fountValueState.fountValue) ? Colors.black : const Color.fromARGB(255, 46, 45, 45),
+                  // border: Border.all(width: 2, color: Colors.white30),
                   boxShadow:  [
                     BoxShadow(
                       blurRadius: 5,
                       spreadRadius: 0.1, 
                       blurStyle: BlurStyle.normal,
-                      color: colorTheme.primary.withOpacity(0.3),
+                      color: colorTheme.primary.withOpacity(0.4),
                       offset: const Offset(1, 2)
                     )
                   ]
@@ -82,7 +85,7 @@ class _CompassWidgetState extends ConsumerState<CompassWidget> {
                 child: Center(
                   child: Text(
                     '${heading!.toStringAsFixed(1)}°',
-                    style: textTheme.titleMedium,
+                    style: textTheme.titleMedium?.copyWith(color: Colors.white),
                   ),
                 ),
               ),

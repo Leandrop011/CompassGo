@@ -2,17 +2,32 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+const List<(Color, String)> listColorsThemeApp = [
+  (Colors.red, 'Rojo'),
+  (Colors.yellowAccent, 'Amarillo'),
+  (Colors.blueAccent, 'Azul'),
+  (Colors.green, 'Verde'),
+  (Color.fromARGB(255, 60, 230, 213), 'Cian'),
+  (Colors.deepPurple, 'Morado'),
+  (Colors.pink, 'Rosa'),
+  (Colors.brown, 'Marron'),
+];
+
+
 class AppTheme {
+
   final bool isDarck;
+  final int valueColorThemeApp;
 
   AppTheme({
-    required this.isDarck
+    required this.isDarck, 
+    required this.valueColorThemeApp
   });
 
   ThemeData getTheme() => ThemeData(
     useMaterial3: true,
 
-    colorSchemeSeed: const Color.fromARGB(255, 85, 188, 153),
+    colorSchemeSeed: listColorsThemeApp[valueColorThemeApp].$1,
 
     textTheme: TextTheme(
       // * TITULOS / DISPLAY -> Familia "Sora" (geometrica, tecnologica, ideal para una brujula)

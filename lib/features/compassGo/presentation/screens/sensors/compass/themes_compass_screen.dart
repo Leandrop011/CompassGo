@@ -74,7 +74,7 @@ class _BodyView extends ConsumerWidget {
           crossAxisCount: 2,
           itemCount: themesCompass.length,
           mainAxisSpacing: size.height * 0.01,
-          crossAxisSpacing: size.width * 0.02,
+          crossAxisSpacing: size.width * 0.01,
           itemBuilder: (context, index){
         
             final theme = themesCompass[index];

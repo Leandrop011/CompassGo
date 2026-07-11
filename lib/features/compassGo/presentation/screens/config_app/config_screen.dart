@@ -58,6 +58,7 @@ class _BodyView extends ConsumerWidget {
     final permissions = ref.watch(permissionProvider);
     final textTheme = Theme.of(context).textTheme;
     final size = MediaQuery.of(context).size;
+    final fountAppState = ref.watch(fountValueProvider);
 
     return Padding(
       padding: EdgeInsetsGeometry.only(left: size.width * 0.025),
@@ -88,26 +89,28 @@ class _BodyView extends ConsumerWidget {
             height: size.height * 0.1,
             width: size.width,
             child: SwitchListTile(
-              title: const Text('Fondo'),
-              subtitle: const Text('Obscuro/Blanco'),
-              secondary: const Icon(CupertinoIcons.moon_stars_fill),
-              value: false, 
-              onChanged: (value) => {},
+              title: Text('Fondo', style: textTheme.bodyLarge?.copyWith(color: Colors.white),),
+              subtitle: Text('Obscuro/Blanco', style: textTheme.bodySmall?.copyWith(color: Colors.white),),
+              secondary: const Icon(CupertinoIcons.moon_stars_fill, color: Colors.white,),
+              value: fountAppState.fountValue, 
+              onChanged: (value) => ref.read(fountValueProvider.notifier).changeFount(value),
             ),
           ),
       
-          BoxStyle(
-            color: const Color.fromARGB(255, 50, 63, 76),
-            borderRadius: BorderRadius.circular(20),
-            border: Border.all(color: Colors.grey.shade700, width: 1),
-            height: size.height * 0.1,
-            width: size.width,
-            child: SwitchListTile(
-              title: const Text('Seguridad'),
-              subtitle: const Text('PIN/Biometricos'),
-              secondary: const Icon(CupertinoIcons.lock_fill),
-              value: false,
-              onChanged: (value) => {},
+          GestureDetector(
+            onTap: () => context.push('config-view-theme-app'),
+            child: BoxStyle(
+              color: const Color.fromARGB(255, 50, 63, 76),
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(color: Colors.grey.shade700, width: 1),
+              height: size.height * 0.1,
+              width: size.width,
+              child: ListTile(
+                title: Text('Temas', style: textTheme.bodyLarge?.copyWith(color: Colors.white),),
+                subtitle: Text('Personaliza la apariencia de la app', style: textTheme.bodySmall?.copyWith(color: Colors.white),),
+                leading: const Icon(CupertinoIcons.paintbrush_fill, color: Colors.white,),
+                trailing: const Icon(Icons.arrow_forward_ios_rounded, color: Colors.white,),
+              ),
             ),
           ),
       

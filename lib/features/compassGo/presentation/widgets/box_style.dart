@@ -5,19 +5,21 @@ class BoxStyle extends StatelessWidget {
 
   final Color color;
   final BorderRadius borderRadius;
-  final Border border;
-  final Widget child;
+  final Border? border;
+  final Widget? child;
   final double height;
   final double width;
+  final List<BoxShadow>? boxShadow;
 
   const BoxStyle({
     super.key, 
     required this.color, 
     required this.borderRadius, 
-    required this.border, 
-    required this.child, 
     required this.height, 
-    required this.width
+    required this.width,
+    this.border, 
+    this.child, 
+    this.boxShadow, 
   });
 
   @override
@@ -34,6 +36,7 @@ class BoxStyle extends StatelessWidget {
           color: color,
           borderRadius: borderRadius,
           border: border,
+          boxShadow: boxShadow
         ),
         child: child,
       ),

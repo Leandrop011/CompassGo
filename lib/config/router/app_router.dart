@@ -10,11 +10,6 @@ final appRouter = GoRouter(
       path: '/',
       builder: (context, state) => const HomeScreen(),
     ),
-    // ? Ruta info app
-    GoRoute(
-      path: '/info-app-screen',
-      builder: (context, state) => const InfoAppScreen(),
-    ),
     // ? Ruta de configuracion de la app
     GoRoute(
       path: '/config-app-screen',
@@ -29,6 +24,11 @@ final appRouter = GoRouter(
     GoRoute(
       path: '/config-view-theme-map',
       builder: (context, state) => const MapFullScreen(),
+    ),
+    // ? ruta de configuracion del tema de la app 
+    GoRoute(
+      path: '/config-view-theme-app',
+      builder: (context, state) => const ThemeAppScreen(),
     ),
 
   ]

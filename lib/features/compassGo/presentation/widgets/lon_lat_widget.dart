@@ -101,12 +101,14 @@ class _LonLatWidget extends ConsumerWidget {
           ),
       
           SizedBox(height: size.height * 0.005,),
-          Divider(
-            indent: size.width * 0.1,
-            endIndent: size.width * 0.1,
+         
+          DividerWidget(
+            indent: size.width * 0.1, 
+            endIndet: size.width * 0.1, 
+            radius: BorderRadius.circular(10), 
             thickness: size.height * 0.003,
-            radius: BorderRadius.circular(10),
           ),
+
           SizedBox(height: size.height * 0.005,),
           
           Row(

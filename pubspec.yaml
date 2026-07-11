@@ -41,6 +41,7 @@ flutter:
     - assets/images/compass_images/
     - assets/splash_images/
     - assets/animations/
+    - assets/tutorial_app/
 
 flutter_launcher_icons:
   android: true
